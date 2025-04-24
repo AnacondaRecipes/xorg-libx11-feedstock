@@ -22,7 +22,7 @@ build:
     - {{ pin_subpackage(name|lower) }}
   detect_binary_files_with_prefix: true
   always_include_files:
-    # Workaround for dummy X11 headers in OSX `tk` package
+    # Workaround for dummy X11 headers in OSX `tk` package.
     - include/X11/cursorfont.h
     - include/X11/ImUtil.h
     - include/X11/Xcms.h
