@@ -55,10 +55,11 @@ requirements:
     - libtool                       # [unix]
     - sed                           # [unix]
   host:
-    - xorg-xorgproto
     - libxcb
     - pthread-stubs
+    - xorg-kbproto
     - xorg-util-macros
+    - xorg-xorgproto
     - xorg-xtrans
 
 test:
