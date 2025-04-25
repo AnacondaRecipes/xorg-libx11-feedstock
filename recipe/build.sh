@@ -55,7 +55,7 @@ if [ -n "$CYGWIN_PREFIX" ] ; then
     done
 
     # Explicitly set preprocessor to use gcc in preprocessing mode
-    export CPP="$CC -E"
+    export CPP="gcc -E"
     
     # Ensure compiler path is correct
     echo "Using compiler: $CC"
