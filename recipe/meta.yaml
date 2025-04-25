@@ -60,6 +60,7 @@ requirements:
     - xorg-xextproto
     - xorg-kbproto
     - xorg-inputproto
+    - xorg-libxdmcp
     - xorg-libxau
     - xorg-util-macros
     - xorg-xorgproto
