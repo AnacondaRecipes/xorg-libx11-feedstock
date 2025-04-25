@@ -57,7 +57,9 @@ requirements:
   host:
     - libxcb
     - pthread-stubs
+    - xorg-xextproto
     - xorg-kbproto
+    - xorg-inputproto
     - xorg-util-macros
     - xorg-xorgproto
     - xorg-xtrans
