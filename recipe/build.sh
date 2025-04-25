@@ -54,6 +54,19 @@ if [ -n "$CYGWIN_PREFIX" ] ; then
         fi
     done
 
+    # Explicitly set preprocessor to use gcc in preprocessing mode
+    export CPP="$CC -E"
+    
+    # Ensure compiler path is correct
+    echo "Using compiler: $CC"
+    echo "Path: $PATH"
+    
+    # Add configure flags to help with Windows builds
+    configure_args+=(
+        --build=x86_64-w64-mingw32
+        --host=x86_64-w64-mingw32
+    )
+
     # Needed to get X11/X.h
     export CFLAGS="$CFLAGS -I$LIBRARY_PREFIX_U/include"
 else
