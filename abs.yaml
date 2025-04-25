@@ -6,3 +6,4 @@ channels:
   - https://staging.continuum.io/prefect/fs/xorg-kbproto-feedstock/pr1/e318043
   - https://staging.continuum.io/prefect/fs/xorg-xextproto-feedstock/pr1/73f21fc
   - https://staging.continuum.io/prefect/fs/xorg-inputproto-feedstock/pr1/9c31ca8
+  - https://staging.continuum.io/prefect/fs/xorg-libxau-feedstock/pr1/1de3d48
