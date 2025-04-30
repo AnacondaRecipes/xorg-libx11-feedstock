@@ -3,7 +3,6 @@
 {% set name = "xorg-" ~ xorg_name %}
 {% set version = "1.8.12" %}
 {% set sha256 = "fa026f9bb0124f4d6c808f9aef4057aad65e7b35d8ff43951cef0abe06bb9a9a" %}
-{% set am_version = "1.15" %} # keep synchronized with build.sh
 
 package:
   name: {{ name|lower }}
@@ -21,7 +20,8 @@ build:
   number: 0
   # configure.ac:3: error: Autoconf version 2.70 or higher is required
   # our latest m2-autoconf is 2.69
-  #skip: true  # [win]
+  # xorg-libxdmcp and libxcb aren't available on Windows because their dependencies clash with m2/msys2 and mingw64/ucrt64 toolchains.
+  skip: true  # [win]
   run_exports:
     - {{ pin_subpackage(name|lower) }}
   detect_binary_files_with_prefix: true
@@ -65,8 +65,6 @@ requirements:
     - xorg-xextproto
     - xorg-kbproto
     - xorg-inputproto
-    - xorg-libxdmcp
-    - xorg-libxau
     - xorg-util-macros
     - xorg-xorgproto
     - xorg-xtrans
@@ -81,6 +79,8 @@ test:
 
 about:
   home: https://www.x.org/
+  dev_url: https://gitlab.freedesktop.org/xorg/lib/libx11
+  doc_url: https://gitlab.freedesktop.org/xorg/lib/libx11
   license: MIT
   license_family: MIT
   license_file: COPYING
