@@ -68,6 +68,8 @@ requirements:
     - xorg-util-macros
     - xorg-xorgproto
     - xorg-xtrans
+  run:
+    - xorg-xorgproto
 
 test:
   commands:
