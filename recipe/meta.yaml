@@ -19,7 +19,7 @@ source:
 build:
   number: 0
   # configure.ac:3: error: Autoconf version 2.70 or higher is required
-  # our latest m2-autoconf is 2.69
+  # our latest m2-autoconf is 2.69.
   # xorg-libxdmcp and libxcb aren't available on Windows because their dependencies clash with m2/msys2 and mingw64/ucrt64 toolchains.
   skip: true  # [win]
   run_exports:
