@@ -70,7 +70,6 @@ requirements:
     - xorg-xtrans
   run:
     - xorg-xorgproto
-    - xorg-xproto
 
 test:
   commands:
