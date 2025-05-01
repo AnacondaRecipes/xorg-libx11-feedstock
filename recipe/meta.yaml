@@ -60,7 +60,7 @@ requirements:
     - libtool                       # [unix]
     - sed                           # [unix]
   host:
-    - libxcb
+    - libxcb >=1.11.1
     - pthread-stubs
     - xorg-util-macros
     - xorg-xorgproto
@@ -79,7 +79,7 @@ test:
 about:
   home: https://www.x.org/
   dev_url: https://gitlab.freedesktop.org/xorg/lib/libx11
-  doc_url: https://gitlab.freedesktop.org/xorg/lib/libx11
+  doc_url: https://www.x.org/releases/current/doc/libX11/libX11/libX11.html
   license: MIT
   license_family: MIT
   license_file: COPYING
