@@ -3,7 +3,6 @@
 {% set name = "xorg-" ~ xorg_name %}
 {% set version = "1.8.12" %}
 {% set sha256 = "fa026f9bb0124f4d6c808f9aef4057aad65e7b35d8ff43951cef0abe06bb9a9a" %}
-{% set am_version = "1.15" %} # keep synchronized with build.sh
 
 package:
   name: {{ name|lower }}
@@ -14,15 +13,20 @@ source:
   sha256: {{ sha256 }}
   patches:
     # https://gitlab.freedesktop.org/xorg/proto/xorgproto/-/issues/44
-    - windows_compat.patch
+    - windows_compat.patch        # [win]
+    - autoconf-269-compat.patch   # [win]
 
 build:
   number: 0
+  # configure.ac:3: error: Autoconf version 2.70 or higher is required
+  # our latest m2-autoconf is 2.69.
+  # xorg-libxdmcp and libxcb aren't available on Windows because their dependencies clash with m2/msys2 and mingw64/ucrt64 toolchains.
+  skip: true  # [win]
   run_exports:
     - {{ pin_subpackage(name|lower) }}
   detect_binary_files_with_prefix: true
   always_include_files:
-    # Workaround for dummy X11 headers in OSX `tk` package
+    # Workaround for dummy X11 headers in OSX `tk` package.
     - include/X11/cursorfont.h
     - include/X11/ImUtil.h
     - include/X11/Xcms.h
@@ -38,6 +42,7 @@ build:
 
 requirements:
   build:
+    - m2-patch                      # [win]
     - m2-autoconf                   # [win]
     - m2-automake{{ am_version }}   # [win]
     - m2-libtool                    # [win]
@@ -48,20 +53,20 @@ requirements:
     - make                          # [unix]
     - m2-make                       # [win]
     - {{ compiler('c') }}           # [unix]
-    - {{ stdlib('c') }}             # [unix]
     - {{ compiler('m2w64_c') }}     # [win]
-    - {{ stdlib('m2w64_c') }}       # [win]
     - autoconf                      # [unix]
     - automake                      # [unix]
     - gettext                       # [unix]
     - libtool                       # [unix]
     - sed                           # [unix]
   host:
-    - xorg-xorgproto
-    - libxcb
+    - libxcb >=1.11.1
     - pthread-stubs
     - xorg-util-macros
+    - xorg-xorgproto
     - xorg-xtrans
+  run:
+    - xorg-xorgproto >=7.0.25
 
 test:
   commands:
@@ -69,12 +74,12 @@ test:
     {% for lib_ident in lib_idents %}
     - test -f $PREFIX/lib/lib{{ lib_ident }}.dylib  # [osx]
     - test -f $PREFIX/lib/lib{{ lib_ident }}.so  # [linux]
-    - if not exist %PREFIX%/Library/lib/lib{{ lib_ident }}.dll.a exit /b 1  # [win]
-    - if not exist %PREFIX%/Library/bin/msys-{{ lib_ident }}-*.dll exit /b 1  # [win]
     {% endfor %}
 
 about:
   home: https://www.x.org/
+  dev_url: https://gitlab.freedesktop.org/xorg/lib/libx11
+  doc_url: https://www.x.org/releases/current/doc/libX11/libX11/libX11.html
   license: MIT
   license_family: MIT
   license_file: COPYING
