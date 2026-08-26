@@ -37,20 +37,20 @@ build:
 
 requirements:
   build:
-    - {{ stdlib("c") }}  # [unix]
-    - {{ compiler('c') }}           # [unix]
-    - pkg-config                    # [unix]
-    - gnuconfig                     # [unix]
-    - autoconf                      # [unix]
-    - automake                      # [unix]
-    - gettext                       # [unix]
-    - libtool                       # [unix]
-    - sed                           # [unix]
+    - {{ stdlib("c") }}
+    - {{ compiler('c') }}
+    - pkg-config
+    - gnuconfig
+    - autoconf
+    - automake
+    - gettext
+    - libtool
+    - sed
   host:
     - libxcb >=1.11.1
     - pthread-stubs
     - xorg-util-macros
-    - xorg-xorgproto {{ xorg_xorgproto}}
+    - xorg-xorgproto
     - xorg-xtrans
   run:
     - xorg-xorgproto >=2024.1
