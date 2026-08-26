@@ -10,10 +10,6 @@ package:
 source:
   url: https://www.x.org/releases/individual/{{ xorg_category }}/{{ xorg_name }}-{{ version }}.tar.xz
   sha256: 69606f485c2c07c14ef64f75b7bb326d48587af33795d9ab3e607c0b5f94f11c
-  patches:
-    # https://gitlab.freedesktop.org/xorg/proto/xorgproto/-/issues/44
-    - windows_compat.patch        # [win]
-    - autoconf-269-compat.patch   # [win]
 
 build:
   number: 0
@@ -43,17 +39,8 @@ requirements:
   build:
     - {{ stdlib("c") }}  # [unix]
     - {{ compiler('c') }}           # [unix]
-    - {{ compiler('m2w64_c') }}     # [win]
-    - m2-patch                      # [win]
-    - m2-autoconf                   # [win]
-    - m2-automake{{ am_version }}   # [win]
-    - m2-libtool                    # [win]
     - pkg-config                    # [unix]
-    - m2-pkg-config                 # [win]
     - gnuconfig                     # [unix]
-    - m2-base                       # [win]
-    - make                          # [unix]
-    - m2-make                       # [win]
     - autoconf                      # [unix]
     - automake                      # [unix]
     - gettext                       # [unix]
@@ -63,7 +50,7 @@ requirements:
     - libxcb >=1.11.1
     - pthread-stubs
     - xorg-util-macros
-    - xorg-xorgproto
+    - xorg-xorgproto {{ xorg_xorgproto}}
     - xorg-xtrans
   run:
     - xorg-xorgproto >=2024.1
