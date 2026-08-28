@@ -1,6 +1,4 @@
-{% set xorg_name = "libX11" %}
-{% set xorg_category = "lib" %}
-{% set name = "xorg-" ~ xorg_name %}
+{% set name = "xorg-libX11" %}
 {% set version = "1.8.13" %}
 
 package:
@@ -8,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://www.x.org/releases/individual/{{ xorg_category }}/{{ xorg_name }}-{{ version }}.tar.xz
+  url: https://www.x.org/releases/individual/lib/{{ name.split('-')[1] }}-{{ version }}.tar.xz
   sha256: 69606f485c2c07c14ef64f75b7bb326d48587af33795d9ab3e607c0b5f94f11c
 
 build:
@@ -37,7 +35,7 @@ build:
 
 requirements:
   build:
-    - {{ stdlib("c") }}
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - pkg-config
     - gnuconfig
@@ -47,11 +45,11 @@ requirements:
     - libtool
     - sed
   host:
-    - libxcb >=1.11.1
-    - pthread-stubs
-    - xorg-util-macros
-    - xorg-xorgproto
-    - xorg-xtrans
+    - libxcb {{ libxcb }}
+    - pthread-stubs ==0.3
+    - xorg-util-macros == 1.20.2
+    - xorg-xorgproto {{ xorg_xorgproto }}
+    - xorg-xtrans == 1.6.0
   run:
     - xorg-xorgproto >=2024.1
 
