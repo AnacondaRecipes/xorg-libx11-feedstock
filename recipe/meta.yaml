@@ -57,11 +57,10 @@ requirements:
 
 test:
   commands:
-    {% set lib_idents = [ "X11", "X11-xcb" ] %}
-    {% for lib_ident in lib_idents %}
-    - test -f $PREFIX/lib/lib{{ lib_ident }}.dylib  # [osx]
-    - test -f $PREFIX/lib/lib{{ lib_ident }}.so  # [linux]
-    {% endfor %}
+    - test -f $PREFIX/lib/libX11.dylib  # [osx]
+    - test -f $PREFIX/lib/libX11.so  # [linux]
+    - test -f $PREFIX/lib/libX11-xcb.dylib  # [osx]
+    - test -f $PREFIX/lib/libX11-xcb.so  # [linux]
 
 about:
   home: https://www.x.org/
