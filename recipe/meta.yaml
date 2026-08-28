@@ -47,9 +47,9 @@ requirements:
   host:
     - libxcb {{ libxcb }}
     - pthread-stubs ==0.3
-    - xorg-util-macros == 1.20.2
+    - xorg-util-macros ==1.20.2
     - xorg-xorgproto {{ xorg_xorgproto }}
-    - xorg-xtrans == 1.6.0
+    - xorg-xtrans ==1.6.0
   run:
     - xorg-xorgproto >=2024.1
 
